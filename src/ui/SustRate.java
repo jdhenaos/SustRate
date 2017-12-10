@@ -5,6 +5,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import logic.CalcRate;
+
 public class SustRate {
 
 	/**
@@ -13,13 +15,14 @@ public class SustRate {
 	static FileReader reader;
 	private static String line;
 	private static ArrayList<String> joiner = new ArrayList<String>();
+	static CalcRate result;
 	
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 		
 		
 		
-		BufferedReader buffer = new BufferedReader(reader = new FileReader("/home/juan/soft/filogenia/ejemplo alignment.fa"));
+		BufferedReader buffer = new BufferedReader(reader = new FileReader("/home/juan/soft/filogenia/newProgram/test.txt"));
 		
 		while((line = buffer.readLine()) != null){
 			if(line.startsWith(">")){
@@ -33,9 +36,8 @@ public class SustRate {
 			}
 		}
 		
-		for(int i = 0; i < joiner.size(); i++){
-			System.out.println(joiner.get(i));
-		}
+		result = new CalcRate(joiner);
+		result.dataCreater();
 
 	}
 
