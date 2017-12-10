@@ -6,14 +6,15 @@ import java.util.Hashtable;
 public class CalcRate {
 	
 	private ArrayList<String> joiner;
-	private Hashtable<String,Hashtable<String,Integer>> data = new Hashtable<String,Hashtable<String,Integer>>();
-	private Hashtable<String,Integer> subdata = new Hashtable<String,Integer>();
-	private int aCounter, tCounter, gCounter, cCounter,gapCounter;
+	private Hashtable<String,Hashtable<String,Double>> data = new Hashtable<String,Hashtable<String,Double>>();
+	private Hashtable<String,Double> subdata = new Hashtable<String,Double>();
+	private double aCounter, tCounter, gCounter, cCounter,gapCounter;
 
 	public CalcRate(ArrayList<String> joiner){
 		this.setJoiner(joiner);
 	}
 	
+	@SuppressWarnings("unchecked")
 	public void dataCreater(){
 		for(int i = 0; i < joiner.size(); i+=2){
 			aCounter = 0;
@@ -37,13 +38,13 @@ public class CalcRate {
 					throw new IllegalStateException("You have non-nucleotide symbols. Possible Ns were found");
 				}
 			}
-			subdata.put("gA", (aCounter/joiner.get(i+1).length())/(joiner.size()/2));
-			subdata.put("gT", (tCounter/joiner.get(i+1).length())/(joiner.size()/2));
-			subdata.put("gG", (gCounter/joiner.get(i+1).length())/(joiner.size()/2));
-			subdata.put("gC", (cCounter/joiner.get(i+1).length())/(joiner.size()/2));
-			data.put(joiner.get(i), subdata);
+			subdata.put("gA", aCounter/joiner.get(i+1).length());
+			subdata.put("gT", tCounter/joiner.get(i+1).length());
+			subdata.put("gG", gCounter/joiner.get(i+1).length());
+			subdata.put("gC", cCounter/joiner.get(i+1).length());
+			subdata.put("gGAP", gapCounter/joiner.get(i+1).length());
+			data.put(joiner.get(i), (Hashtable<String, Double>) subdata.clone());
 		}
-		
 	}
 	
 	public ArrayList<String> getJoiner() {
