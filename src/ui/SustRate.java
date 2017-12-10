@@ -25,8 +25,16 @@ public class SustRate {
 			if(line.startsWith(">")){
 				joiner.add(line);
 			}else{
-				System.out.println("header");
+				if(joiner.get(joiner.size()-1).startsWith(">")){
+					joiner.add(line);
+				}else{
+					joiner.set(joiner.size()-1, joiner.get(joiner.size()-1)+line);
+				}
 			}
+		}
+		
+		for(int i = 0; i < joiner.size(); i++){
+			System.out.println(joiner.get(i));
 		}
 
 	}
