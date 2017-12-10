@@ -1,9 +1,9 @@
 package ui;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class SustRate {
 
@@ -11,16 +11,22 @@ public class SustRate {
 	 * @param args
 	 */
 	static FileReader reader;
+	private static String line;
+	private static ArrayList<String> joiner = new ArrayList<String>();
 	
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 		
-		String line;
 		
-		BufferedReader buffer = new BufferedReader(reader = new FileReader("/home/juan/soft/SustRate/test.txt"));
+		
+		BufferedReader buffer = new BufferedReader(reader = new FileReader("/home/juan/soft/filogenia/ejemplo alignment.fa"));
 		
 		while((line = buffer.readLine()) != null){
-			System.out.println(line);
+			if(line.startsWith(">")){
+				joiner.add(line);
+			}else{
+				System.out.println("header");
+			}
 		}
 
 	}
