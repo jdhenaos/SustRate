@@ -14,8 +14,8 @@ public class CalcRate {
 		this.setJoiner(joiner);
 	}
 	
-	@SuppressWarnings("unchecked")
-	public void dataCreater(){
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	private Hashtable dataCreater(ArrayList<String> joiner){
 		for(int i = 0; i < joiner.size(); i+=2){
 			aCounter = 0;
 			tCounter = 0;
@@ -45,6 +45,18 @@ public class CalcRate {
 			subdata.put("gGAP", gapCounter/joiner.get(i+1).length());
 			data.put(joiner.get(i), (Hashtable<String, Double>) subdata.clone());
 		}
+		return(data);
+	}
+	
+	public void P1ij(){
+		
+		Hashtable<String,Hashtable<String,Double>> input = new Hashtable<String,Hashtable<String,Double>>();
+		
+		input = dataCreater(this.joiner);
+		
+		System.out.println(input.size());
+		
+		Object[][] resultP1s = new Object[2][2];
 	}
 	
 	public ArrayList<String> getJoiner() {
