@@ -37,6 +37,7 @@ public class SustRate {
 		}
 		
 		result = new CalcRate(joiner);
+		result.Results();
 
 	}
 
