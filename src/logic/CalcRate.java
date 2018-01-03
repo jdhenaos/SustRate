@@ -73,11 +73,25 @@ public class CalcRate {
 				changeP1++;
 			}else if(comp1.charAt(y) == 'G' && comp2.charAt(y) == 'A'){
 				changeP1++;
+			}else if(comp1.charAt(y) == 'C' && comp2.charAt(y) == 'T'){
+				changeP2++;
+			}else if(comp1.charAt(y) == 'T' && comp2.charAt(y) == 'C'){
+				changeP2++;
+			}else if(comp1.charAt(y) == 'A' && comp2.charAt(y) == 'T'){
+				changeQ++;
+			}else if(comp1.charAt(y) == 'T' && comp2.charAt(y) == 'A'){
+				changeQ++;
+			}else if(comp1.charAt(y) == 'G' && comp2.charAt(y) == 'C'){
+				changeQ++;
+			}else if(comp1.charAt(y) == 'C' && comp2.charAt(y) == 'G'){
+				changeQ++;
+			}else if(comp1.charAt(y) == '-' || comp2.charAt(y) == '-'){
+				changeGAP++;
 			}
 			
 		}
 		
-		return(changeP1/comp1.length());
+		return(changeGAP/comp1.length());
 	}
 	
 	public void Results(){
@@ -109,12 +123,12 @@ public class CalcRate {
 					
 					K1[o][i] = p1;
 				}else{
-					K1[o][i] = 0;
+					K1[o][i] = 0.0;
 				}
 			}
 		}
 		
-
+		
 		for(int a = 0; a < names.length; a++){
 			for(int b = 0; b < names.length; b++){
 				System.out.print(K1[a][b]);
@@ -123,7 +137,7 @@ public class CalcRate {
 			
 			System.out.println();
 		}
-
+		
 	
 	}
 	
