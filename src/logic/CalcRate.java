@@ -49,7 +49,7 @@ public class CalcRate {
 		return(data);
 	}
 	
-	public Hashtable<String,Double> inputEquations(String alfa, String beta){
+	private Hashtable<String,Double> inputEquations(String alfa, String beta){
 		
 		Hashtable<String,Double> step2 = new Hashtable<String,Double>();
 		
@@ -104,6 +104,9 @@ public class CalcRate {
 		
 		Hashtable<String,Hashtable<String,Double>> input = dataCreater();
 		Object[][] K1 = new Object[input.size()][input.size()];
+		Object[][] K2 = new Object[input.size()][input.size()];
+		Object[][] B = new Object[input.size()][input.size()];
+		Object[][] K3 = new Object[input.size()][input.size()];
 		
 		Set<String> keys = input.keySet();
 		String[] names = new String[input.size()];
@@ -127,16 +130,22 @@ public class CalcRate {
 					
 					K1[o][i] = (inputEquations(names[o],names[i]).get("P1ij")/(gA*gG))
 							/(inputEquations(names[o],names[i]).get("Qij")/(gR*gY*gGAP));
+					K2[o][i] = (inputEquations(names[o],names[i]).get("P2ij")/(gT*gC))
+							/(inputEquations(names[o],names[i]).get("Qij")/(gR*gY*gGAP));
+					B[o][i] = inputEquations(names[o],names[i]).get("Qij")/(4*gR*gY*gGAP);
+					K3[o][i] = inputEquations(names[o],names[i]).get("GAPij")/(4*gR*gY*gGAP);
 				}else{
 					K1[o][i] = 0.0;
+					K2[o][i] = 0.0;
+					B[o][i] = 0.0;
+					K3[o][i] = 0.0;
 				}
 			}
 		}
 		
-		
 		for(int a = 0; a < names.length; a++){
 			for(int b = 0; b < names.length; b++){
-				System.out.print(K1[a][b]);
+				System.out.print(K3[a][b]);
 				System.out.print("\t");
 			}
 			
