@@ -51,11 +51,19 @@ public class CalcRate {
 	
 	public double P1ij(String alfa, String beta){
 		
-		String seq1;
-		String seq2;
+		String comp1 = "";
+		String comp2 = "";
 		
-		for(int z = 0; z < joiner.size(); z++){
-			System.out.println(joiner.get(z));
+		for(int z = 0; z < joiner.size(); z+=2){
+			if(joiner.get(z).equals(alfa)){
+				comp1 = joiner.get(z+1);
+			}else if(joiner.get(z).equals(beta)){
+				comp2 = joiner.get(z+1);
+			}
+			
+			System.out.println(comp1);
+			System.out.println(comp2);
+			
 		}
 		
 		return(0.9);
