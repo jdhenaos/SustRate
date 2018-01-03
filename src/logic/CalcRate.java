@@ -10,6 +10,7 @@ public class CalcRate {
 	private Hashtable<String,Hashtable<String,Double>> data = new Hashtable<String,Hashtable<String,Double>>();
 	private Hashtable<String,Double> subdata = new Hashtable<String,Double>();
 	private double aCounter, tCounter, gCounter, cCounter,gapCounter;
+	private double p1;
 
 	public CalcRate(ArrayList<String> joiner){
 		this.setJoiner(joiner);
@@ -60,11 +61,10 @@ public class CalcRate {
 			}else if(joiner.get(z).equals(beta)){
 				comp2 = joiner.get(z+1);
 			}
-			
-			System.out.println(comp1);
-			System.out.println(comp2);
-			
 		}
+		
+		System.out.println(comp1);
+		System.out.println(comp2);
 		
 		return(0.9);
 	}
@@ -72,7 +72,6 @@ public class CalcRate {
 	public void Results(){
 		
 		Hashtable<String,Hashtable<String,Double>> input = dataCreater();
-		
 		Object[][] K1 = new Object[input.size()][input.size()];
 		
 		Set<String> keys = input.keySet();
@@ -85,21 +84,24 @@ public class CalcRate {
 		
 		for(int o = 0; o < names.length; o++){
 			for(int i = 0; i < names.length; i++){
-				double gA = (input.get(names[o]).get("gA")+input.get(names[i]).get("gA"))/2;
-				double gT = (input.get(names[o]).get("gT")+input.get(names[i]).get("gT"))/2;
-				double gG = (input.get(names[o]).get("gG")+input.get(names[i]).get("gG"))/2;
-				double gC = (input.get(names[o]).get("gC")+input.get(names[i]).get("gC"))/2;
-				double gGAP = (input.get(names[o]).get("gGAP")+input.get(names[i]).get("gGAP"))/2;
-				double gR = gA + gG;
-				double gY = gT + gC;
 				
-				double P1 = P1ij(names[o],names[i]);
-				
-				K1[o][i] = gGAP;
+				if(!names[o].equals(names[i])){
+					double gA = (input.get(names[o]).get("gA")+input.get(names[i]).get("gA"))/2;
+					double gT = (input.get(names[o]).get("gT")+input.get(names[i]).get("gT"))/2;
+					double gG = (input.get(names[o]).get("gG")+input.get(names[i]).get("gG"))/2;
+					double gC = (input.get(names[o]).get("gC")+input.get(names[i]).get("gC"))/2;
+					double gGAP = (input.get(names[o]).get("gGAP")+input.get(names[i]).get("gGAP"))/2;
+					double gR = gA + gG;
+					double gY = gT + gC;
+					
+					p1 = P1ij(names[o],names[i]);
+					
+					K1[o][i] = p1;
+				}else{
+					K1[o][i] = 0;
+				}
 			}
 		}
-		
-		System.out.println(K1[5][4]);
 		
 		/*
 		for(int a = 0; a < names.length; a++){
