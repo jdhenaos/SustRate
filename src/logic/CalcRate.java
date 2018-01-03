@@ -54,6 +54,10 @@ public class CalcRate {
 		
 		String comp1 = "";
 		String comp2 = "";
+		double changeP1 = 0;
+		double changeP2 = 0;
+		double changeQ = 0;
+		double changeGAP = 0;
 		
 		for(int z = 0; z < joiner.size(); z+=2){
 			if(joiner.get(z).equals(alfa)){
@@ -63,10 +67,17 @@ public class CalcRate {
 			}
 		}
 		
-		System.out.println(comp1);
-		System.out.println(comp2);
+		for(int y = 0; y < comp1.length(); y++){
+			
+			if(comp1.charAt(y) == 'A' && comp2.charAt(y) == 'G'){
+				changeP1++;
+			}else if(comp1.charAt(y) == 'G' && comp2.charAt(y) == 'A'){
+				changeP1++;
+			}
+			
+		}
 		
-		return(0.9);
+		return(changeP1/comp1.length());
 	}
 	
 	public void Results(){
@@ -103,7 +114,7 @@ public class CalcRate {
 			}
 		}
 		
-		/*
+
 		for(int a = 0; a < names.length; a++){
 			for(int b = 0; b < names.length; b++){
 				System.out.print(K1[a][b]);
@@ -112,8 +123,8 @@ public class CalcRate {
 			
 			System.out.println();
 		}
-		*/
-		
+
+	
 	}
 	
 	public ArrayList<String> getJoiner() {
