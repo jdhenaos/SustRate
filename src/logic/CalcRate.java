@@ -10,7 +10,6 @@ public class CalcRate {
 	private Hashtable<String,Hashtable<String,Double>> data = new Hashtable<String,Hashtable<String,Double>>();
 	private Hashtable<String,Double> subdata = new Hashtable<String,Double>();
 	private double aCounter, tCounter, gCounter, cCounter,gapCounter;
-	private double p1;
 
 	public CalcRate(ArrayList<String> joiner){
 		this.setJoiner(joiner);
@@ -50,7 +49,9 @@ public class CalcRate {
 		return(data);
 	}
 	
-	public double P1ij(String alfa, String beta){
+	public Hashtable<String,Double> inputEquations(String alfa, String beta){
+		
+		Hashtable<String,Double> step2 = new Hashtable<String,Double>();
 		
 		String comp1 = "";
 		String comp2 = "";
@@ -91,7 +92,12 @@ public class CalcRate {
 			
 		}
 		
-		return(changeGAP/comp1.length());
+		step2.put("P1ij", changeP1/comp1.length());
+		step2.put("P2ij", changeP2/comp1.length());
+		step2.put("Qij", changeQ/comp1.length());
+		step2.put("GAPij", changeGAP/comp1.length());
+		
+		return(step2);
 	}
 	
 	public void Results(){
@@ -119,9 +125,8 @@ public class CalcRate {
 					double gR = gA + gG;
 					double gY = gT + gC;
 					
-					p1 = P1ij(names[o],names[i]);
-					
-					K1[o][i] = p1;
+					K1[o][i] = (inputEquations(names[o],names[i]).get("P1ij")/(gA*gG))
+							/(inputEquations(names[o],names[i]).get("Qij")/(gR*gY*gGAP));
 				}else{
 					K1[o][i] = 0.0;
 				}
