@@ -5,8 +5,7 @@ import java.util.ArrayList;
 public class CalcRate {
 	
 	private ArrayList<String> joiner;
-	@SuppressWarnings("unused")
-	private double A,T,C,G,GAP,gGAP,gA,gC,gT,gG,gR,gY,P1,P2,Q,Z;
+	private double A,T,C,G,GAP,gGAP,gA,gC,gT,gG,gR,gY,P1,P2,Q,Z,K1,K2,B,K3;
 
 	public CalcRate(ArrayList<String> joiner){
 		this.setJoiner(joiner);
@@ -50,11 +49,35 @@ public class CalcRate {
 		gR = gA + gG;
 		gY = gT + gC;
 		
+		System.out.print("First ID");
+		System.out.print("\t");
+		System.out.print("Second ID");
+		System.out.print("\t");
+		System.out.print("P1ij");
+		System.out.print("\t");
+		System.out.print("P2ij");
+		System.out.print("\t");
+		System.out.print("Qij");
+		System.out.print("\t");
+		System.out.print("GAPij");
+		System.out.print("\t");
+		System.out.print("K1");
+		System.out.print("\t");
+		System.out.print("K2");
+		System.out.print("\t");
+		System.out.print("Bij");
+		System.out.print("\t");
+		System.out.println("K3");
+		
 		for(int a = 0; a < joiner.size() - 2; a+=2){
 			P1 = 0.0;
 			P2 = 0.0;
 			Q = 0.0;
 			Z = 0.0;
+			K1 = 0.0;
+			K2 = 0.0;
+			B = 0.0;
+			K3 = 0.0;
 			for(int b = 0; b < joiner.get(a+1).length(); b++){
 				if(joiner.get(a+1).charAt(b) == 'A' && joiner.get(a+3).charAt(b) == 'G'){
 					P1++;
@@ -76,10 +99,15 @@ public class CalcRate {
 					Z++;
 				}
 			}
-			P1/=joiner.get(a+1).length();
-			P2/=joiner.get(a+1).length();
-			Q/=joiner.get(a+1).length();
-			Z/=joiner.get(a+1).length();
+			P1/=(double) joiner.get(a+1).length();
+			P2/=(double) joiner.get(a+1).length();
+			Q/=(double) joiner.get(a+1).length();
+			Z/=(double) joiner.get(a+1).length();
+			
+			K1 = (P1/(double) (gA*gG))/(Q/(gR*gY*gGAP));
+			K2 = (P2/(double) (gA*gG))/(Q/(gR*gY*gGAP));
+			B = Q/(4.0*(double) (gR*gY*gGAP));
+			K3 = Z/(4.0*(double) (gR*gY*gGAP));
 			
 			System.out.print(joiner.get(a));
 			System.out.print("\t");
@@ -91,7 +119,15 @@ public class CalcRate {
 			System.out.print("\t");
 			System.out.print(Q);
 			System.out.print("\t");
-			System.out.println(Z);
+			System.out.print(Z);
+			System.out.print("\t");
+			System.out.print(K1);
+			System.out.print("\t");
+			System.out.print(K2);
+			System.out.print("\t");
+			System.out.print(B);
+			System.out.print("\t");
+			System.out.println(K3);
 		}
 	}
 	
