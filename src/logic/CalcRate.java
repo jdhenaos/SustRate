@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class CalcRate {
 	
 	private ArrayList<String> joiner;
-	//@SuppressWarnings("unused")
+	@SuppressWarnings("unused")
 	private double A,T,C,G,GAP,gGAP,gA,gC,gT,gG,gR,gY,P1,P2,Q,Z;
 
 	public CalcRate(ArrayList<String> joiner){
@@ -64,8 +64,34 @@ public class CalcRate {
 					P2++;
 				}else if(joiner.get(a+1).charAt(b) == 'C' && joiner.get(a+3).charAt(b) == 'T'){
 					P2++;
+				}else if(joiner.get(a+1).charAt(b) == 'A' && joiner.get(a+3).charAt(b) == 'T'){
+					Q++;
+				}else if(joiner.get(a+1).charAt(b) == 'T' && joiner.get(a+3).charAt(b) == 'A'){
+					Q++;
+				}else if(joiner.get(a+1).charAt(b) == 'C' && joiner.get(a+3).charAt(b) == 'G'){
+					Q++;
+				}else if(joiner.get(a+1).charAt(b) == 'G' && joiner.get(a+3).charAt(b) == 'C'){
+					Q++;
+				}else if(joiner.get(a+1).charAt(b) == '-'){
+					Z++;
 				}
 			}
+			P1/=joiner.get(a+1).length();
+			P2/=joiner.get(a+1).length();
+			Q/=joiner.get(a+1).length();
+			Z/=joiner.get(a+1).length();
+			
+			System.out.print(joiner.get(a));
+			System.out.print("\t");
+			System.out.print(joiner.get(a+2));
+			System.out.print("\t");
+			System.out.print(P1);
+			System.out.print("\t");
+			System.out.print(P2);
+			System.out.print("\t");
+			System.out.print(Q);
+			System.out.print("\t");
+			System.out.println(Z);
 		}
 	}
 	
