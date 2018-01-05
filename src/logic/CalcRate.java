@@ -6,7 +6,7 @@ public class CalcRate {
 	
 	private ArrayList<String> joiner;
 	@SuppressWarnings("unused")
-	private double A,T,C,G,GAP,gA,gC,gT,gG,gGAP;
+	private double A,T,C,G,GAP,gA,gC,gT,gG,gGAP,gR,gY;
 
 	public CalcRate(ArrayList<String> joiner){
 		this.setJoiner(joiner);
@@ -39,19 +39,20 @@ public class CalcRate {
 				}
 			}
 			
-			gA+=A/(double) joiner.get(i).length();
+			gA+=A/((double) joiner.get(i).length());
 			gT+=T/(double) joiner.get(i).length();
 			gC+=C/(double) joiner.get(i).length();
 			gG+=G/(double) joiner.get(i).length();
 			gGAP+=GAP/(double) joiner.get(i).length();
-			
-			System.out.println(gA);
 		}
-		gA=gA/(joiner.size()/2);
-		gT=gT/(joiner.size()/2);
-		gC=gC/(joiner.size()/2);
-		gG=gG/(joiner.size()/2);
-		gGAP=GAP/(joiner.size()/2);
+		gA=gA/((double) joiner.size()/2);
+		gT=gT/((double) joiner.size()/2);
+		gC=gC/((double) joiner.size()/2);
+		gG=gG/((double) joiner.size()/2);
+		gGAP=GAP/((double) joiner.size()/2);
+		
+		gR = gA + gG;
+		gY = gT + gC;
 	}
 	
 	public ArrayList<String> getJoiner() {
