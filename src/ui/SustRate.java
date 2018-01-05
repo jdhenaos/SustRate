@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import logic.CalcRate;
 
+@SuppressWarnings("unused")
 public class SustRate {
 
 	/**
@@ -17,7 +18,7 @@ public class SustRate {
 	private static ArrayList<String> joiner = new ArrayList<String>();
 	static CalcRate result;
 	
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
 		
 		
