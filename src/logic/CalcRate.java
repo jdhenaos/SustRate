@@ -16,6 +16,7 @@ public class CalcRate {
 	public void some(String fileName) throws Exception{
 		
 		FileWriter writer = new FileWriter(fileName);
+		@SuppressWarnings("resource")
 		BufferedWriter wBuffer = new BufferedWriter(writer);
 		
 		for(int i = 1; i < joiner.size(); i+=2){
@@ -56,24 +57,25 @@ public class CalcRate {
 		gY = gT + gC;
 		
 		wBuffer.write("First_ID");
-		System.out.print("\t");
-		System.out.print("Second_ID");
-		System.out.print("\t");
-		System.out.print("P1ij");
-		System.out.print("\t");
-		System.out.print("P2ij");
-		System.out.print("\t");
-		System.out.print("Qij");
-		System.out.print("\t");
-		System.out.print("GAPij");
-		System.out.print("\t");
-		System.out.print("K1");
-		System.out.print("\t");
-		System.out.print("K2");
-		System.out.print("\t");
-		System.out.print("Bij");
-		System.out.print("\t");
-		System.out.println("K3");
+		wBuffer.write("\t");
+		wBuffer.write("Second_ID");
+		wBuffer.write("\t");
+		wBuffer.write("P1ij");
+		wBuffer.write("\t");
+		wBuffer.write("P2ij");
+		wBuffer.write("\t");
+		wBuffer.write("Qij");
+		wBuffer.write("\t");
+		wBuffer.write("GAPij");
+		wBuffer.write("\t");
+		wBuffer.write("K1");
+		wBuffer.write("\t");
+		wBuffer.write("K2");
+		wBuffer.write("\t");
+		wBuffer.write("Bij");
+		wBuffer.write("\t");
+		wBuffer.write("K3");
+		wBuffer.write("\n");
 		
 		for(int a = 0; a < joiner.size() - 2; a+=2){
 			P1 = 0.0;
@@ -115,25 +117,26 @@ public class CalcRate {
 			B = Q/(4.0*(double) (gR*gY*gGAP));
 			K3 = Z/(4.0*(double) (gR*gY*gGAP));
 			
-			System.out.print(joiner.get(a));
-			System.out.print("\t");
-			System.out.print(joiner.get(a+2));
-			System.out.print("\t");
-			System.out.print(P1);
-			System.out.print("\t");
-			System.out.print(P2);
-			System.out.print("\t");
-			System.out.print(Q);
-			System.out.print("\t");
-			System.out.print(Z);
-			System.out.print("\t");
-			System.out.print(K1);
-			System.out.print("\t");
-			System.out.print(K2);
-			System.out.print("\t");
-			System.out.print(B);
-			System.out.print("\t");
-			System.out.println(K3);
+			wBuffer.write(joiner.get(a));
+			wBuffer.write("\t");
+			wBuffer.write(joiner.get(a+2));
+			wBuffer.write("\t");
+			wBuffer.write(Double.toString(P1));
+			wBuffer.write("\t");
+			wBuffer.write(Double.toString(P2));
+			wBuffer.write("\t");
+			wBuffer.write(Double.toString(Q));
+			wBuffer.write("\t");
+			wBuffer.write(Double.toString(Z));
+			wBuffer.write("\t");
+			wBuffer.write(Double.toString(K1));
+			wBuffer.write("\t");
+			wBuffer.write(Double.toString(K2));
+			wBuffer.write("\t");
+			wBuffer.write(Double.toString(B));
+			wBuffer.write("\t");
+			wBuffer.write(Double.toString(K3));
+			wBuffer.write("\n");
 		}
 	}
 	

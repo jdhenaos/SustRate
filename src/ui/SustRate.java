@@ -36,7 +36,7 @@ public class SustRate {
 		}
 		
 		result = new CalcRate(joiner);
-		result.some();
+		result.some(args[1]);
 		
 		buffer.close();
 	}
