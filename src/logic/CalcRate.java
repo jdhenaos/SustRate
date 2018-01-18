@@ -16,7 +16,6 @@ public class CalcRate {
 	public void some(String fileName) throws Exception{
 		
 		FileWriter writer = new FileWriter(fileName);
-		@SuppressWarnings("resource")
 		BufferedWriter wBuffer = new BufferedWriter(writer);
 		
 		for(int i = 1; i < joiner.size(); i+=2){
@@ -138,6 +137,8 @@ public class CalcRate {
 			wBuffer.write(Double.toString(K3));
 			wBuffer.write("\n");
 		}
+		
+		wBuffer.close();
 	}
 	
 	public ArrayList<String> getJoiner() {
