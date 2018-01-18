@@ -2,12 +2,10 @@ package ui;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 
 import logic.CalcRate;
 
-@SuppressWarnings("unused")
 public class SustRate {
 
 	/**
@@ -23,7 +21,7 @@ public class SustRate {
 		
 		
 		
-		BufferedReader buffer = new BufferedReader(reader = new FileReader("/home/juan/soft/filogenia/newProgram/test.txt"));
+		BufferedReader buffer = new BufferedReader(reader = new FileReader(args[0]));
 		
 		while((line = buffer.readLine()) != null){
 			if(line.startsWith(">")){
@@ -39,6 +37,8 @@ public class SustRate {
 		
 		result = new CalcRate(joiner);
 		result.some();
+		
+		buffer.close();
 	}
 
 }

@@ -1,5 +1,7 @@
 package logic;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.util.ArrayList;
 
 public class CalcRate {
@@ -11,7 +13,11 @@ public class CalcRate {
 		this.setJoiner(joiner);
 	}
 	
-	public void some() throws Exception{
+	public void some(String fileName) throws Exception{
+		
+		FileWriter writer = new FileWriter(fileName);
+		BufferedWriter wBuffer = new BufferedWriter(writer);
+		
 		for(int i = 1; i < joiner.size(); i+=2){
 			A = 0.0;
 			T = 0.0;
@@ -49,9 +55,9 @@ public class CalcRate {
 		gR = gA + gG;
 		gY = gT + gC;
 		
-		System.out.print("First ID");
+		wBuffer.write("First_ID");
 		System.out.print("\t");
-		System.out.print("Second ID");
+		System.out.print("Second_ID");
 		System.out.print("\t");
 		System.out.print("P1ij");
 		System.out.print("\t");
